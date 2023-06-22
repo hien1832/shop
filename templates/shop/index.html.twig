@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+{% block body %}
+<h1 class="form-header">
+  Available Products ({{ products|length}})
+</h1>
+<div class="wrapper">
+{% for product in products %}
+  <div class="product">
+    <img src="{{ product.getImgPath }}" alt="illustration">
+    <h4>{{ product.title }}</h4>
+    <p>${{ product.price }}</p>
+    <a href="/detail/{{ product.id }}" class="buy-btn">Buy now</a>
+  </div>
+{% endfor %}  
+</div>
+{% endblock %}

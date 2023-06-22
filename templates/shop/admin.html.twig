@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Manager{% endblock %}
+{% block body %}
+    <h1 class="form-header">Admin User Manager</h1>
+    <table class="table3">
+      <tr>
+        <td><h5>ID</h5></td>
+        <td><h5>USERNAME</h5></td>
+        <td><h5>ROLE</h5></td>
+        <td><h5>NAME</h5></td>
+        <td><h5>DOB</h5></td>
+        <td><h5>PHONE</h5></td>
+        <td><h5>EMAIL</h5></td>
+        <td><h5>ACTION</h5></td>
+      </tr>
+      {% for user in users %}
+       <tr>
+        <td><p>{{ user.id }}</p></td>
+        <td><p>{{ user.username }}</p></td>
+        <td>
+        {% for role in user.getRoles %}
+            <p>{{ role }}</p>
+        {% endfor %}
+        </td>
+        <td><p>{{ user.name }}</p></td>
+        <td><p>{{ user.dob|date("d/m/Y") }}</p></td>
+        <td><p>{{ user.phone }}</p></td>
+        <td><p>{{ user.email }}</p></td>
+        <td><a href="/admin/delete/{{ user.id }}" class="delete-btn">Delete</a></td>
+      </tr>  
+      {% endfor %}
+    </table>
+{% endblock %}

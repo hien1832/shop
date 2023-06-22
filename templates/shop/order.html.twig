@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product Details{% endblock %}
+{% block body %}
+<table>
+  <tr>
+    <td class="header1"><h1>What You're Ordering</h1></th>
+    <td class="header1"><h1>What You're Ordered</h1></th>
+  </tr>
+  <tr>
+    <td>
+       {% for ordering in orderings %}
+       <table class="table2">
+         <tr>
+           <td><h3>Products</h3></td>
+           <td><h3>Price</h3></td>
+           <td><h3>Quantity</h3></td>
+           <td><h3>Total</h3></td>
+         </tr>
+         <tr>
+         <td>
+           <img class="small-img" src="{{ ordering.getItem.getImgPath }}" alt="">
+           <h4>{{ordering.getItem.title}}</h4>
+         </td>
+         <td><p>${{ordering.getItem.price}}</p></td>
+         <td><p>{{ordering.quantity}}</p></td>
+         <td><p>${{ordering.getItem.price * ordering.quantity}}</p></td>
+         </tr>
+         <tr>
+         <td colspan="5"> 
+             <p>ORDER INFOMATION</p>
+             <P>Seller: {{ordering.getItem.getSeller.name}}</p>
+             <p>Seller Phone: {{ordering.getItem.getSeller.phone}}</p>
+             <p>Receiver phone: {{ordering.phone}}</p>
+             <p>Receiver email: {{ordering.email}}</p>
+             <p>Delivery Address: {{ordering.address}}</p>
+             <p>Note: {{ordering.note}}</p>
+        </td>
+         </tr>
+       </table>        
+       {% endfor %}
+    </td>
+    <td>
+     {% for product in products %}
+        {% if product.getOrdering %}
+            <table class="table2">
+         <tr>
+           <td><h3>Products</h3></td>
+           <td><h3>Price</h3></td>
+           <td><h3>Quantity</h3></td>
+           <td><h3>Total</h3></td>
+         </tr>
+         <tr>
+           <td>
+           <img class="small-img" src="{{ product.getOrdering.getItem.getImgPath }}" alt="">
+           <h4>{{ product.getOrdering.getItem.title }}</h4>
+           </td>
+           <td><p>${{ product.getOrdering.getItem.price }}</p></td>
+           <td><p>{{ product.getOrdering.quantity }}</p></td>
+           <td><p>${{ product.getOrdering.getItem.price * product.getOrdering.quantity }}</p></td>
+         </tr>
+         <tr>
+            <td colspan="5"> 
+             <p>ORDER INFOMATION</p>
+             <P>Customer: {{ product.getOrdering.getBuyer.name }}</p>
+             <p>Receiver Phone: {{ product.getOrdering.phone }}</p>
+             <p>Receiver Email: {{ product.getOrdering.email }}</p>
+             <p>Delivery Address: {{ product.getOrdering.address }}</p>
+             <p>Note: {{ product.getOrdering.note }}</p>
+        </td>
+         </tr>
+       </table>
+        {% endif %}
+     {% endfor %}
+    </td>
+  </tr>
+</table>
+{% endblock %}

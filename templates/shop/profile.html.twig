@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your Profile{% endblock %}
+{% block body %}
+    <h1 class="form-header">Change Your Profile Infomation</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.username, {
+        }) }}
+        {{ form_row(form.plainPassword, {
+        }) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.dob) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.agreeTerms) }}
+
+        <button type="submit" class="btn">Apply Changes</button>
+    {{ form_end(form) }}
+{% endblock %}

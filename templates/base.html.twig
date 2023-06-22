@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('assets/img/shopicon.png') }} ">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+              <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="navbar">
+          <a href="/shop"><img src="{{ asset('assets/img/shopicon.png') }}" alt="icon of shop" class="icon"></a>
+          <nav>
+            {% if app.user %}
+             <span><a href="/admin" class="nav-option">Admin Manager</a></span>
+            <span><a href="/products" class="nav-option">Products</a></span>
+            <span><a href="/order" class="nav-option">Orders</a></span>
+            <span><a href="/profile" class="nav-option">Profile</a></span>
+            {% endif %}
+            <span><a href="{{ app.user ? 'logout' : 'login' }}" class="nav-option">{{ app.user ? 'logout' : 'login' }}</a></span>
+          </nav>
+        </div>
+        <div class="remove-space"></div>
+        {% block body %}{% endblock %}
+        <div class="footer" id="footer">
+                <h3>Contact Us</h3>
+                <div class="social-link">
+                    <a href="https://www.facebook.com" target="_blank"><img src="{{ asset('assets/img/fb.png') }}" class="fb" alt="Facebook Icon"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="{{ asset('assets/img/ig.png') }}" class="ig" alt="Instagram Icon"></a>
+                    <a href="https://twitter.com" target="_blank"><img src="{{ asset('assets/img/tw.png') }}" class="tw" alt="Twitter Icon"></a>
+                </div>
+                <hr>
+                <p class="copyright">Copyright © 2022 Shopping Website Inc. All rights reserved.</p>
+            </div>
+    </body>
+</html>

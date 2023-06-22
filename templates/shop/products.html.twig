@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your Products{% endblock %}
+{% block body %}
+<h1 class="form-header">Manage Your Products</h1>
+<div class="head-btn">
+  <a href="/create">Create a product</a>
+</div>
+<div class="wrapper">
+{% for product in products %}
+  <div class="product">
+    <img src="{{ product.getImgPath }}" alt="illustration">
+    <h4>{{ product.title }}</h4>
+    <p>${{ product.price }}</p>
+    <a href="/products/edit/{{ product.id }}" class="edit-btn">Edit</a>
+    <a href="/products/delete/{{ product.id }}" class="delete-btn">Delete</a>
+  </div>
+{% endfor %}  
+</div>
+{% endblock %}

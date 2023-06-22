@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product Details{% endblock %}
+{% block body %}
+<table class>
+  <tr>
+    <td class="header1"><h1>Product Details</h1></th>
+    <td class="header1"><h1>Order Section</h1></th>
+  </tr>
+  <tr>
+    <td>
+       <img src="{{ product.getImgPath }}" alt="illustration">
+       <h3>Product: {{ product.title }}</h3>
+       <h2>Price: ${{product.price}}</h2>
+       <h4>Seller: {{ product.getSeller.name }}</h4>
+       <h4>Hotline: {{ product.getSeller.phone }}</h4>
+       <h4>Email: {{ product.getSeller.email }}</h4>
+       <h4>Product details:</h4>
+       <p>{{ product.description }}</p>
+    </td>
+    <td>
+      {{ form_start(form) }} 
+      {{ form_widget(form) }}
+        <button type="submit" class="btn">Send Order</button>
+      {{ form_end(form) }}
+    </td>
+  </tr>
+</table>
+{% endblock %}

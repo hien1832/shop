@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create a product{% endblock %}
+{% block body %}
+<h1 class="form-header">Fill in Your Product Infomation</h1>
+{{ form_start(form) }} 
+   {{ form_widget(form) }}
+   <button type="submit" class="btn">Publish Product</button>
+{{ form_end(form) }}
+{% endblock %}
